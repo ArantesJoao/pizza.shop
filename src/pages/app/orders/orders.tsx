@@ -62,7 +62,7 @@ export const Orders = () => {
                   <TableHead className="w-16"></TableHead>
                   <TableHead className="w-[140px]">ID</TableHead>
                   <TableHead className="w-[180px]">Placed</TableHead>
-                  <TableHead className="w-[140px]">Status</TableHead>
+                  <TableHead className="w-[150px]">Status</TableHead>
                   <TableHead>Customer</TableHead>
                   <TableHead className="w-[140px]">Total</TableHead>
                   <TableHead className="w-[164px]"></TableHead>
