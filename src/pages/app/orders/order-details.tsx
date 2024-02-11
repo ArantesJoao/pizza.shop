@@ -20,21 +20,19 @@ import {
   TableRow,
 } from '@/components/ui/table'
 
+import { OrderDetailsSkeleton } from './order-details-skeleton'
+
 export interface OrderDetailsProps {
   orderId: string
   open: boolean
 }
 
-export const OrderDetails = ({ orderId, open }: OrderDetailsProps) => {
+export function OrderDetails({ orderId, open }: OrderDetailsProps) {
   const { data: order } = useQuery({
     queryKey: ['order', orderId],
     queryFn: () => getOrderDetails({ orderId }),
     enabled: open, // only runs this query when the modal is open
   })
-
-  if (!order) {
-    return null
-  }
 
   return (
     <DialogContent>
@@ -43,7 +41,7 @@ export const OrderDetails = ({ orderId, open }: OrderDetailsProps) => {
         <DialogDescription>Order details</DialogDescription>
       </DialogHeader>
 
-      {order && (
+      {order ? (
         <div className="space-y-6">
           <Table>
             <TableBody>
@@ -65,9 +63,11 @@ export const OrderDetails = ({ orderId, open }: OrderDetailsProps) => {
 
               <TableRow>
                 <TableCell className="text-muted-foreground">
+                  Phone number
+                </TableCell>
+                <TableCell className="flex justify-end">
                   {order.customer.phone ?? 'Not informed'}
                 </TableCell>
-                <TableCell className="flex justify-end">202-555-0112</TableCell>
               </TableRow>
 
               <TableRow>
@@ -139,6 +139,8 @@ export const OrderDetails = ({ orderId, open }: OrderDetailsProps) => {
             </TableFooter>
           </Table>
         </div>
+      ) : (
+        <OrderDetailsSkeleton />
       )}
     </DialogContent>
   )
