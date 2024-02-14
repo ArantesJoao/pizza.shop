@@ -8,6 +8,7 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
+    "dev:test": "vite --port 50789 --mode test",
     "test": "vitest"
   },
   "dependencies": {
@@ -53,11 +54,17 @@
     "eslint": "^8.56.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "happy-dom": "^13.3.8",
+    "msw": "^2.2.0",
     "postcss": "^8.4.33",
     "prettier-plugin-tailwindcss": "^0.5.11",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.2.2",
     "vite": "^5.0.8",
     "vitest": "^1.2.2"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }
