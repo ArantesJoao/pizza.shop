@@ -61,7 +61,7 @@ test('filter by status', async ({ page }) => {
   await page.getByLabel('Canceled').click()
   await page.getByRole('button', { name: 'Filter results' }).click()
 
-  const tableRows = await page.getByRole('cell', { name: 'Canceled' }).all()
+  const tableRows = await page.getByRole('cell', { name: 'Canceled' })
 
-  expect(tableRows).toHaveLength(10)
+  await expect(tableRows).toHaveCount(10)
 })
