@@ -3,11 +3,11 @@ import { expect, test } from '@playwright/test'
 test('load orders', async ({ page }) => {
   await page.goto('/orders', { waitUntil: 'networkidle' })
 
-  expect(
+  await expect(
     page.getByRole('cell', { name: 'Customer 1', exact: true }),
   ).toBeVisible()
 
-  expect(page.getByRole('cell', { name: 'Customer 10' })).toBeVisible()
+  await expect(page.getByRole('cell', { name: 'Customer 10' })).toBeVisible()
 })
 
 test('orders pagination', async ({ page }) => {
@@ -15,25 +15,25 @@ test('orders pagination', async ({ page }) => {
 
   await page.getByRole('button', { name: 'Next page' }).click()
 
-  expect(page.getByRole('cell', { name: 'Customer 11' })).toBeVisible()
-  expect(page.getByRole('cell', { name: 'Customer 20' })).toBeVisible()
+  await expect(page.getByRole('cell', { name: 'Customer 11' })).toBeVisible()
+  await expect(page.getByRole('cell', { name: 'Customer 20' })).toBeVisible()
 
   await page.getByRole('button', { name: 'Last page' }).click()
 
-  expect(page.getByRole('cell', { name: 'Customer 51' })).toBeVisible()
-  expect(page.getByRole('cell', { name: 'Customer 60' })).toBeVisible()
+  await expect(page.getByRole('cell', { name: 'Customer 51' })).toBeVisible()
+  await expect(page.getByRole('cell', { name: 'Customer 60' })).toBeVisible()
 
   await page.getByRole('button', { name: 'Previous page' }).click()
 
-  expect(page.getByRole('cell', { name: 'Customer 41' })).toBeVisible()
-  expect(page.getByRole('cell', { name: 'Customer 50' })).toBeVisible()
+  await expect(page.getByRole('cell', { name: 'Customer 41' })).toBeVisible()
+  await expect(page.getByRole('cell', { name: 'Customer 50' })).toBeVisible()
 
   await page.getByRole('button', { name: 'First page' }).click()
 
-  expect(
+  await expect(
     page.getByRole('cell', { name: 'Customer 1', exact: true }),
   ).toBeVisible()
-  expect(page.getByRole('cell', { name: 'Customer 10' })).toBeVisible()
+  await expect(page.getByRole('cell', { name: 'Customer 10' })).toBeVisible()
 })
 
 test('filter by order id', async ({ page }) => {
@@ -42,7 +42,7 @@ test('filter by order id', async ({ page }) => {
   await page.getByPlaceholder('Order ID').fill('order-11')
   await page.getByRole('button', { name: 'Filter results' }).click()
 
-  expect(page.getByRole('cell', { name: 'order-11' })).toBeVisible()
+  await expect(page.getByRole('cell', { name: 'order-11' })).toBeVisible()
 })
 
 test('filter by customer name', async ({ page }) => {
@@ -51,7 +51,7 @@ test('filter by customer name', async ({ page }) => {
   await page.getByPlaceholder('Customer name').fill('Customer 11')
   await page.getByRole('button', { name: 'Filter results' }).click()
 
-  expect(page.getByRole('cell', { name: 'Customer 11' })).toBeVisible()
+  await expect(page.getByRole('cell', { name: 'Customer 11' })).toBeVisible()
 })
 
 test('filter by status', async ({ page }) => {
